@@ -5,7 +5,7 @@ context:
   name: "gz-cmake4"
   cxx_name: "libgz-cmake4"
 
-package:
+recipe:
   name: ${{ name }}
   version: ${{ version }}
 
