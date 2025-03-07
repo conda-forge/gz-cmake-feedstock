@@ -17,11 +17,14 @@ build:
   number: 0
 
 outputs:
-  - name: ${{ cxx_name }}
-    script:
-      unix: build_cxx.sh
-      win: bld_cxx.bat
+  - package:
+      name: ${{ cxx_name }}
     build:
+      script:
+        - if: unix
+          then: build_cxx.sh
+        - if: win
+          then: bld_cxx.bat
       run_exports:
         - pin_subpackage(${{ cxx_name }}, max_pin="x")
       # The dlfcn-win32 run_export is only needed on Windows.
