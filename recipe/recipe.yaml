@@ -51,7 +51,8 @@ outputs:
         - if: win
           then: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
-  - name: ${{ name }}
+  - package:
+      name: ${{ name }}
     build:
       run_exports:
         - pin_subpackage(${{ cxx_name }}, max_pin="x")
