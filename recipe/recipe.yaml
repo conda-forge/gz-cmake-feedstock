@@ -45,7 +45,7 @@ outputs:
            then:
              - dlfcn-win32
     test:
-      commands:
+      script:
         - if: not win
           then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
@@ -60,7 +60,7 @@ outputs:
       run:
         - pin_subpackage(${{ cxx_name }}, exact=True)
     test:
-      commands:
+      script:
         - if: not win
           then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
