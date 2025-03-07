@@ -1,0 +1,73 @@
+context:
+  version: "4.1.1"
+  major_version: "4"
+  repo_name: "gz-cmake"
+  name: "gz-cmake4"
+  cxx_name: "libgz-cmake4"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: "https://github.com/gazebosim/${{ repo_name }}/archive/${{ repo_name }}${{ major_version }}_${{ version }}.tar.gz"
+    sha256: "fdec06a58dab1b8259a2b5d199b1ea370a917518b9b06a10f042433ba93d5df4"
+
+build:
+  number: 0
+
+outputs:
+  - name: ${{ cxx_name }}
+    script:
+      unix: build_cxx.sh
+      win: bld_cxx.bat
+    build:
+      run_exports:
+        - pin_subpackage(${{ cxx_name }}, max_pin="x")
+      # The dlfcn-win32 run_export is only needed on Windows.
+      ignore_run_exports:
+        - dlfcn-win32:
+            if: win
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - pkg-config
+        - ninja
+      host:
+        - dlfcn-win32:
+            if: win
+    test:
+      commands:
+        - if: not win
+          command: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+        - if: win
+          command: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+
+  - name: ${{ name }}
+    build:
+      run_exports:
+        - pin_subpackage(${{ cxx_name }}, max_pin="x")
+    requirements:
+      run:
+        - pin_subpackage(${{ cxx_name }}, exact=True)
+    test:
+      commands:
+        - if: not win
+          command: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+        - if: win
+          command: if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+
+about:
+  home: "https://github.com/gazebosim/gz-cmake"
+  license: "Apache-2.0"
+  license_file: "LICENSE"
+  summary: "A set of CMake modules that are used by the C++-based Gazebo projects."
+
+extra:
+  recipe-maintainers:
+    - wolfv
+    - traversaro
+    - j-rivero
