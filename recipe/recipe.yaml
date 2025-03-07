@@ -44,9 +44,9 @@ outputs:
     test:
       commands:
         - if: not win
-          command: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+          then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
-          command: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+          then: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
   - name: ${{ name }}
     build:
@@ -58,9 +58,9 @@ outputs:
     test:
       commands:
         - if: not win
-          command: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+          then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
-          command: if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+          then: if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
 about:
   home: "https://github.com/gazebosim/gz-cmake"
