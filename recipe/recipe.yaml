@@ -26,8 +26,9 @@ outputs:
         - pin_subpackage(${{ cxx_name }}, max_pin="x")
       # The dlfcn-win32 run_export is only needed on Windows.
       ignore_run_exports:
-        - dlfcn-win32:
-            if: win
+         - if: win
+           then:
+             - dlfcn-win32
     requirements:
       build:
         - ${{ compiler('c') }}
@@ -37,8 +38,9 @@ outputs:
         - pkg-config
         - ninja
       host:
-        - dlfcn-win32:
-            if: win
+         - if: win
+           then:
+             - dlfcn-win32
     test:
       commands:
         - if: not win
