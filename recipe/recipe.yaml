@@ -46,9 +46,11 @@ outputs:
     tests:
       script:
         - if: not win
-          then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+          then: 
+            - test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
-          then: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+          then: 
+            - if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
   - package:
       name: ${{ name }}
@@ -60,9 +62,11 @@ outputs:
     tests:
       script:
         - if: not win
-          then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+          then: 
+            - test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
-          then: if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+          then: 
+            - if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
 about:
   homepage: https://github.com/gazebosim/gz-cmake
