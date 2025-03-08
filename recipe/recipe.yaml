@@ -75,6 +75,7 @@ about:
   summary: "A set of CMake modules that are used by the C++-based Gazebo projects."
 
 extra:
+  feedstock-name: ${{ repo_name }}
   recipe-maintainers:
     - wolfv
     - traversaro
