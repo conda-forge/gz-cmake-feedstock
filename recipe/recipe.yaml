@@ -25,8 +25,6 @@ outputs:
           then: build_cxx.sh
         - if: win
           then: bld_cxx.bat
-      run_exports:
-        - pin_subpackage(${{ cxx_name }}, max_pin="x")
       # The dlfcn-win32 run_export is only needed on Windows.
       ignore_run_exports:
          - if: win
@@ -44,7 +42,9 @@ outputs:
          - if: win
            then:
              - dlfcn-win32
-    test:
+      run_exports:
+        - pin_subpackage(${{ cxx_name }}, max_pin="x")
+    tests:
       script:
         - if: not win
           then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
@@ -53,13 +53,12 @@ outputs:
 
   - package:
       name: ${{ name }}
-    build:
-      run_exports:
-        - pin_subpackage(${{ cxx_name }}, max_pin="x")
     requirements:
       run:
         - pin_subpackage(${{ cxx_name }}, exact=True)
-    test:
+      run_exports:
+        - pin_subpackage(${{ cxx_name }}, max_pin="x")
+    tests:
       script:
         - if: not win
           then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
@@ -67,7 +66,8 @@ outputs:
           then: if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
 about:
-  home: "https://github.com/gazebosim/gz-cmake"
+  homepage: https://github.com/gazebosim/gz-cmake
+  repository: https://github.com/gazebosim/gz-cmake
   license: "Apache-2.0"
   license_file: "LICENSE"
   summary: "A set of CMake modules that are used by the C++-based Gazebo projects."
