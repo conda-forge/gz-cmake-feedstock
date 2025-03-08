@@ -43,7 +43,6 @@ outputs:
            then:
              - dlfcn-win32
       run_exports:
-        - pin_subpackage(${{ cxx_name }}, max_pin="x")
     tests:
       script:
         - if: not win
@@ -55,9 +54,9 @@ outputs:
       name: ${{ name }}
     requirements:
       run:
-        - pin_subpackage(${{ cxx_name }}, exact=True)
+        - ${{ pin_subpackage(cxx_name, exact=true) }}
       run_exports:
-        - pin_subpackage(${{ cxx_name }}, max_pin="x")
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
     tests:
       script:
         - if: not win
