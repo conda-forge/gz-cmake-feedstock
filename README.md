@@ -1,5 +1,5 @@
-About gz-cmake4-feedstock
-=========================
+About libgz-cmake4-feedstock
+============================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gz-cmake-feedstock/blob/main/LICENSE.txt)
 
@@ -8,6 +8,8 @@ Home: https://github.com/gazebosim/gz-cmake
 Package license: Apache-2.0
 
 Summary: A set of CMake modules that are used by the C++-based Gazebo projects.
+
+Development: https://github.com/gazebosim/gz-cmake
 
 Current build status
 ====================
@@ -84,10 +86,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gz--cmake4-green.svg)](https://anaconda.org/conda-forge/gz-cmake4) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gz-cmake4.svg)](https://anaconda.org/conda-forge/gz-cmake4) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gz-cmake4.svg)](https://anaconda.org/conda-forge/gz-cmake4) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gz-cmake4.svg)](https://anaconda.org/conda-forge/gz-cmake4) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgz--cmake4-green.svg)](https://anaconda.org/conda-forge/libgz-cmake4) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgz-cmake4.svg)](https://anaconda.org/conda-forge/libgz-cmake4) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgz-cmake4.svg)](https://anaconda.org/conda-forge/libgz-cmake4) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgz-cmake4.svg)](https://anaconda.org/conda-forge/libgz-cmake4) |
 
-Installing gz-cmake4
-====================
+Installing libgz-cmake4
+=======================
 
-Installing `gz-cmake4` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `libgz-cmake4` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
@@ -173,17 +175,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating gz-cmake4-feedstock
-============================
+Updating libgz-cmake4-feedstock
+===============================
 
-If you would like to improve the gz-cmake4 recipe or build a new
+If you would like to improve the libgz-cmake4 recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/gz-cmake4-feedstock are
+Note that all branches in the conda-forge/libgz-cmake4-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
