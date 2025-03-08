@@ -45,7 +45,7 @@ outputs:
              - dlfcn-win32
       run_exports:
     tests:
-      script:
+      - script:
         - if: not win
           then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
