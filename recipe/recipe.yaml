@@ -20,16 +20,17 @@ outputs:
   - package:
       name: ${{ cxx_name }}
     build:
-      - script:
+      script:
         - if: unix
           then: build_cxx.sh
         - if: win
           then: bld_cxx.bat
-      # The dlfcn-win32 run_export is only needed on Windows.
+
+       # The dlfcn-win32 run_export is only needed on Windows.
       ignore_run_exports:
-         - if: win
-           then:
-             - dlfcn-win32
+        - if: win
+          then:
+            - dlfcn-win32
     requirements:
       build:
         - ${{ compiler('c') }}
