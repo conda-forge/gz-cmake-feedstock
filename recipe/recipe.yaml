@@ -20,7 +20,7 @@ outputs:
   - package:
       name: ${{ cxx_name }}
     build:
-      script:
+      - script:
         - if: unix
           then: build_cxx.sh
         - if: win
@@ -46,11 +46,9 @@ outputs:
     tests:
       script:
         - if: not win
-          then: 
-            - test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+          then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
-          then: 
-            - if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+          then: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
   - package:
       name: ${{ name }}
@@ -60,13 +58,11 @@ outputs:
       run_exports:
         - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
     tests:
-      script:
+      - script:
         - if: not win
-          then: 
-            - test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+          then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
         - if: win
-          then: 
-            - if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+          then: if exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
 
 about:
   homepage: https://github.com/gazebosim/gz-cmake
