@@ -25,12 +25,6 @@ outputs:
           then: build_cxx.sh
         - if: win
           then: bld_cxx.bat
-
-       # The dlfcn-win32 run_export is only needed on Windows.
-      ignore_run_exports:
-        - if: win
-          then:
-            - dlfcn-win32
     requirements:
       build:
         - ${{ compiler('c') }}
@@ -44,6 +38,13 @@ outputs:
            then:
              - dlfcn-win32
       run_exports:
+         - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+  
+       # The dlfcn-win32 run_export is only needed on Windows.
+      ignore_run_exports:
+        - if: win
+          then:
+            - dlfcn-win32
     tests:
       - script:
         - if: not win
