@@ -42,9 +42,10 @@ outputs:
   
        # The dlfcn-win32 run_export is only needed on Windows.
       ignore_run_exports:
-        - if: win
-          then:
-            - dlfcn-win32
+        from_package:
+          - if: win
+            then:
+              - dlfcn-win32
     tests:
       - script:
         - if: not win
