@@ -14,7 +14,7 @@ source:
     sha256: "62deb00527ea91a5467cfb352189d10303e6508b8d5e52cd6f999bf5a8166cc4"
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - package:
@@ -63,6 +63,34 @@ outputs:
           - if: not win
             then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
             else: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+  # versionless outputs, see https://github.com/conda-forge/gz-sim-feedstock/issues/102 for the rationale
+  - package:
+      name: libgz-cmake
+    requirements:
+      run:
+        - ${{ pin_subpackage(cxx_name, exact=true) }}
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+        - ${{ pin_subpackage('libgz-cmake', upper_bound='x') }}
+    tests:
+      - script:
+          - if: not win
+            then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+            else: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+  - package:
+      name: gz-cmake
+    requirements:
+      run:
+        - ${{ pin_subpackage(name, exact=true) }}
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+        - ${{ pin_subpackage('libgz-cmake', upper_bound='x') }}
+    tests:
+      - script:
+          - if: not win
+            then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+            else: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+
 about:
   homepage: https://github.com/gazebosim/gz-cmake
   repository: https://github.com/gazebosim/gz-cmake

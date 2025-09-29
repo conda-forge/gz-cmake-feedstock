@@ -83,7 +83,9 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gz--cmake-green.svg)](https://anaconda.org/conda-forge/gz-cmake) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gz-cmake.svg)](https://anaconda.org/conda-forge/gz-cmake) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gz-cmake.svg)](https://anaconda.org/conda-forge/gz-cmake) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gz-cmake.svg)](https://anaconda.org/conda-forge/gz-cmake) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gz--cmake4-green.svg)](https://anaconda.org/conda-forge/gz-cmake4) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gz-cmake4.svg)](https://anaconda.org/conda-forge/gz-cmake4) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gz-cmake4.svg)](https://anaconda.org/conda-forge/gz-cmake4) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gz-cmake4.svg)](https://anaconda.org/conda-forge/gz-cmake4) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libgz--cmake-green.svg)](https://anaconda.org/conda-forge/libgz-cmake) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgz-cmake.svg)](https://anaconda.org/conda-forge/libgz-cmake) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgz-cmake.svg)](https://anaconda.org/conda-forge/libgz-cmake) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgz-cmake.svg)](https://anaconda.org/conda-forge/libgz-cmake) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libgz--cmake4-green.svg)](https://anaconda.org/conda-forge/libgz-cmake4) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libgz-cmake4.svg)](https://anaconda.org/conda-forge/libgz-cmake4) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libgz-cmake4.svg)](https://anaconda.org/conda-forge/libgz-cmake4) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libgz-cmake4.svg)](https://anaconda.org/conda-forge/libgz-cmake4) |
 
 Installing gz-cmake
@@ -96,41 +98,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gz-cmake4, libgz-cmake4` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `gz-cmake, gz-cmake4, libgz-cmake, libgz-cmake4` can be installed with `conda`:
 
 ```
-conda install gz-cmake4 libgz-cmake4
-```
-
-or with `mamba`:
-
-```
-mamba install gz-cmake4 libgz-cmake4
-```
-
-It is possible to list all of the versions of `gz-cmake4` available on your platform with `conda`:
-
-```
-conda search gz-cmake4 --channel conda-forge
+conda install gz-cmake gz-cmake4 libgz-cmake libgz-cmake4
 ```
 
 or with `mamba`:
 
 ```
-mamba search gz-cmake4 --channel conda-forge
+mamba install gz-cmake gz-cmake4 libgz-cmake libgz-cmake4
+```
+
+It is possible to list all of the versions of `gz-cmake` available on your platform with `conda`:
+
+```
+conda search gz-cmake --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search gz-cmake --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search gz-cmake4 --channel conda-forge
+mamba repoquery search gz-cmake --channel conda-forge
 
-# List packages depending on `gz-cmake4`:
-mamba repoquery whoneeds gz-cmake4 --channel conda-forge
+# List packages depending on `gz-cmake`:
+mamba repoquery whoneeds gz-cmake --channel conda-forge
 
-# List dependencies of `gz-cmake4`:
-mamba repoquery depends gz-cmake4 --channel conda-forge
+# List dependencies of `gz-cmake`:
+mamba repoquery depends gz-cmake --channel conda-forge
 ```
 
 
