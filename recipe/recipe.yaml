@@ -1,0 +1,106 @@
+context:
+  version: "3.5.5"
+  major_version: "3"
+  repo_name: "gz-cmake"
+  name: "gz-cmake3"
+  cxx_name: "libgz-cmake3"
+
+recipe:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: "https://github.com/gazebosim/${{ repo_name }}/archive/${{ repo_name }}${{ major_version }}_${{ version }}.tar.gz"
+    sha256: "95c8733a4488d1858ad4efa5ebb9cd04e0d2126bfe168c8cb6e5d418db9326ea"
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: ${{ cxx_name }}
+    build:
+      script:
+        - if: unix
+          then: build_cxx.sh
+        - if: win
+          then: bld_cxx.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - pkg-config
+        - ninja
+      host:
+        - if: win
+          then:
+            - dlfcn-win32
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+
+       # The dlfcn-win32 run_export is only needed on Windows.
+      ignore_run_exports:
+        from_package:
+          - if: win
+            then:
+              - dlfcn-win32
+    tests:
+      - script:
+          - if: not win
+            then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+            else: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+  - package:
+      name: ${{ name }}
+    requirements:
+      run:
+        - ${{ pin_subpackage(cxx_name, exact=true) }}
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+    tests:
+      - script:
+          - if: not win
+            then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+            else: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+  # versionless outputs, see https://github.com/conda-forge/gz-sim-feedstock/issues/102 for the rationale
+  - package:
+      name: libgz-cmake
+    requirements:
+      run:
+        - ${{ pin_subpackage(cxx_name, exact=true) }}
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+        - ${{ pin_subpackage('libgz-cmake', upper_bound='x') }}
+    tests:
+      - script:
+          - if: not win
+            then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+            else: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+  - package:
+      name: gz-cmake
+    requirements:
+      run:
+        - ${{ pin_subpackage(name, exact=true) }}
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+        - ${{ pin_subpackage('libgz-cmake', upper_bound='x') }}
+    tests:
+      - script:
+          - if: not win
+            then: test -f ${PREFIX}/share/cmake/${{ name }}/${{ name }}-config.cmake
+            else: if not exist %PREFIX%\Library\share\cmake\${{ name }}\${{ name }}-config.cmake exit 1
+
+about:
+  homepage: https://github.com/gazebosim/gz-cmake
+  repository: https://github.com/gazebosim/gz-cmake
+  license: "Apache-2.0"
+  license_file: "LICENSE"
+  summary: "A set of CMake modules that are used by the C++-based Gazebo projects."
+
+extra:
+  feedstock-name: ${{ repo_name }}
+  recipe-maintainers:
+    - wolfv
+    - traversaro
+    - j-rivero
