@@ -1,5 +1,5 @@
 context:
-  version: "5.0.2"
+  version: "5.1.0"
   major_version: "5"
   repo_name: "gz-cmake"
   name: "gz-cmake"
@@ -11,7 +11,7 @@ recipe:
 
 source:
   - url: "https://github.com/gazebosim/${{ repo_name }}/archive/${{ repo_name }}${{ major_version }}_${{ version }}.tar.gz"
-    sha256: "f4431d9b685aeaf7f7e7a07d266966aceca1e9f5cb6217541d46f91ca38644b5"
+    sha256: "1f567b99b24d77eb82157e514cf05c9920d8be1cd3682c408f0a6b11d8f10c05"
 
 build:
   number: 0
